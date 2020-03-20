@@ -1,25 +1,32 @@
 import Layout from "../components/Layout";
 import Link from "next/link";
+import { NextPage } from "next";
+import gql from "graphql-tag";
+import { useQuery } from "@apollo/react-hooks";
+import withApollo from "../lib/withApollo";
 
-function PostLink(props: { id: string }) {
-  return (
-    <li>
-      <Link href="/post/[id]" as={`/post/${props.id}`}>
-        <a>{props.id}</a>
-      </Link>
-    </li>
-  );
-}
+const QUERY = gql`
+  {
+    hello
+  }
+`;
 
-export default function Index() {
+const Index: NextPage = () => {
+  const { loading, data } = useQuery(QUERY);
   return (
     <Layout>
-      <h1>My Blog</h1>
+      <h1>My Blog &mdash; {loading ? "loading" : data.hello}</h1>
       <ul>
-        <PostLink id="hello-nextjs" />
-        <PostLink id="learn-nextjs" />
-        <PostLink id="deploy-nextjs" />
+        {["hello", "learn", "deploy"].map(id => (
+          <li key={id}>
+            <Link href="/post/[id]">
+              <a>{id}</a>
+            </Link>
+          </li>
+        ))}
       </ul>
     </Layout>
   );
-}
+};
+
+export default withApollo(Index);
