@@ -1,7 +1,6 @@
-import graphqlHTTP from "express-graphql";
 import { GraphQLSchema, GraphQLObjectType, GraphQLString } from "graphql";
 
-const schema = new GraphQLSchema({
+export const schema = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: "RootQueryType",
     fields: {
@@ -13,9 +12,4 @@ const schema = new GraphQLSchema({
       }
     }
   })
-});
-
-export default graphqlHTTP({
-  schema,
-  graphiql: true
 });
