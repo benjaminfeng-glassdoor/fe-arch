@@ -7,7 +7,7 @@ const SERVER_HOST = "http://localhost:3000";
 export default withApollo(
   ({ initialState }) => {
     return new ApolloClient({
-      uri: `${SERVER_HOST}/api`,
+      uri: `${SERVER_HOST}/api/graphql`,
       cache: new InMemoryCache().restore(initialState || {})
     });
   },
