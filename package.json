@@ -20,7 +20,7 @@
     "apollo-boost": "^0.4.7",
     "express-graphql": "^0.9.0",
     "graphql": "^14.6.0",
-    "next": "^9.2.2",
+    "next": "^11.1.0",
     "next-with-apollo": "^5.0.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
